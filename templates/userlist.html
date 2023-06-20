@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USer</title>
+</head>
+<body>
+    {% if request.user.is_superuser %}
+    <a href="/export/">Export Data</a>
+    <a href="/import/">Import Data</a>
+    {% endif %}
+  
+    <center>
+        <div id="home ">
+        <hr/>
+        <table border="1" >
+            <tr>
+                <th> Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Action</th>
+            </tr>
+            {% for result in employee %}
+            <tr>
+                <td>{{result.id}}</td>
+                <td>{{result.username}}</td>
+                <td>{{result.email}}</td>
+                <td>{{result.first_name}}</td>
+                <td>{{result.last_name}}</td>
+                <td><a href="/delete/{{result.id}}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div> 
+</body>
+</html>

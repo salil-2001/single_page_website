@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        function goto(div)
+        {
+            $('html,body').animate({
+                scrollTop:$("#"+div).offset().top
+
+            },'slow');
+        }
+    </script>
+    <script>
+        function gototop()
+        window.scrollTo(0,0);
+
+    </script>
+    <style>
+   
+        #header li
+        {
+            display:inline-block;
+            margin-right: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer; 
+        }
+        #header #site_name
+        {
+            text-align: left;
+            width: 680px;
+            font-size: 35px;
+            margin-left: 20px;
+        }
+        #home,#insert,#contact
+        {
+            margin-top:100px ;
+            margin-right: 5%;
+            height: 500px;
+            margin-left: 5%;
+            padding: 50px;
+            border-style: solid;
+
+        }
+        .scroll-top{
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 99;
+        }
+    </style>
+   
+</head>
+<body>
+    <button type="button" class="scroll-top" onclick="gototop();">&Uarr;</button>
+    <center>
+        <div id="home ">
+        <hr/>
+        
+        </div> 
+
+
+    <div id="insert">
+        {% for message in messages %}
+                    {% if message.tags == 'info' %}
+                        <h1 style="color:red">{{message}}</h1>
+                    {%else%}
+                        <h1 style="color:green">{{message}}</h1>    
+                    {%endif%}
+        {%endfor%}    
+            <h1>Insert Record </h1>
+            <hr/>
+            <form method="POST">
+                {% csrf_token %}
+            <table bordet="1">
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text"  name="username"> </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td><input type="text"  name="email"> </td>
+                </tr>
+
+                <tr>
+                    <td>FirstName: </td>
+                    <td><input type="text"  name="firstname"> </td>
+                </tr>
+                <tr>
+                    <td>LastName: </td>
+                    <td><input type="text"  name="lastname"> </td>
+                </tr>
+                <tr>
+                    <td>password: </td>
+                    <td><input type="text"  name="password"> </td>
+                </tr>
+            
+            </table>
+            <input type="submit" value="insert" >
+            
+    </div> 
+
+  
+    </center>
+    
+</body>
+</html>
